@@ -19,38 +19,38 @@
 -->
 <html>
   <head>
-    <title>Introduction to Three.js</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <script src='slides.js'></script>
-    <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono&v2">
-  </head>
+        <title>Introduction to Three.js</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <script src='slides.js'></script>
+        <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono&v2">
+    </head>
   <body style="display: none">
 
     <section class='slides layout-regular'>
 
       <article class="biglogo">
         <script>
-         (function() {
-           var c = document.createElement('canvas');
-           var ctx = null;
-           try {
-             ctx = c.getContext('webgl');
-           } catch(e) { }
-           try {
-             ctx = ctx || c.getContext('experimental-webgl');
-           } catch(e) { }
-           if (!ctx) alert("No WebGL detected, live demos disabled!");
-         })();
+          (function() {
+              var c = document.createElement('canvas');
+              var ctx = null;
+              try {
+                ctx = c.getContext('webgl');
+            } catch(e) { }
+              try {
+                ctx = ctx || c.getContext('experimental-webgl');
+            } catch(e) { }
+              if (!ctx) alert("No WebGL detected, live demos disabled!");
+          })();
         </script>
-      </article>
+            </article>
 
       <article>
         <h3>Download Demo Programs</h3>
         <ul>
-          <li>To follow this presentation on your laptop: <b><a href="https://lesleylai.github.io/BasicsOfThreeJS/">lesleylai.github.io/BasicsOfThreeJS/</a></b></li>
+        <li>To follow this presentation on your laptop: <b><a href="https://lesleylai.github.io/BasicsOfThreeJS/">lesleylai.github.io/BasicsOfThreeJS/</a></b></li>
         <li>To play with code, go to <a target="_blank" href="https://github.com/LesleyLai/BasicsOfThreeJS">https://github.com/LesleyLai/BasicsOfThreeJS</a></li>
         <ul>
         <li>Click on "Clone or download", download zip, unzip.</li>
@@ -58,7 +58,7 @@
         <li>You'll need to set up local access: <a target="_blank" href="https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally">https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally</a>
           </ul>
         </ul>
-                        </article>
+            </article>
 
         <article>
           <h3>Do You See A Crate?</h3>
@@ -67,18 +67,18 @@
 
         <article id="title" class="title">
           <div>
-          <h1>Three.js basics</h1>
-          <h2 class="subtitle">Lesley Lai</h2>
-          <h3 class="subtitle">(template by Ilmari Heikkinen)</h3>
-        </div>
+            <h1>Three.js basics</h1>
+            <h2 class="subtitle">Lesley Lai</h2>
+            <h3 class="subtitle">(template by Ilmari Heikkinen)</h3>
+          </div>
         </article>
 
         <article>
           <h3>Who am I?</h3>
           <p>Lesley Lai</p>
           <p> <a href="http://lesleylai.info">lesleylai.info</a> 
-          | <a href="https://github.com/LesleyLai">github.com/LesleyLai</a>
-          | <a href="https://www.linkedin.com/in/lesley-lai/">www.linkedin.com/in/lesley-lai/</a></p>
+            | <a href="https://github.com/LesleyLai">github.com/LesleyLai</a>
+            | <a href="https://www.linkedin.com/in/lesley-lai/">www.linkedin.com/in/lesley-lai/</a></p>
           <p>President of CU Computer Graphics Group</p>
           <br><br>
           <p>I love Computer Graphics.</p>
@@ -94,51 +94,51 @@
         <article>
           <h3>Three.js is a JS 3D Engine</h3>
           <ul>
-          <li><a href="https://github.com/mrdoob/three.js/">github.com/mrdoob/three.js</a></li>
-          <li>Popular and used commercially</li>
-          <li>Performant WebGL renderer (our focus today)</li>
-	          <ul>
-	          <li>Fast 3D and 2D GPU-accelerated rendering</li>
-	  </ul>
-          <li>Also has Canvas, CSS3D, and SVG renderers</li>
-        </ul>
+            <li><a href="https://github.com/mrdoob/three.js/">github.com/mrdoob/three.js</a></li>
+            <li>Popular and used commercially</li>
+            <li>Performant WebGL renderer (our focus today)</li>
+	    <ul>
+	      <li>Fast 3D and 2D GPU-accelerated rendering</li>
+	    </ul>
+            <li>Also has Canvas, CSS3D, and SVG renderers</li>
+          </ul>
         </article>
         
         <article>
           <h3>The Existing Code</h3>
           <div>
-	          Look at <a target="_blank" href="three/three_0.html">BasicsOfThreeJS/three/three_0.html</a>, <a target="_blank" href="http://threejs.org/examples/#webgl_geometry_cube">an example</a> that comes with three.js. I made some modification.
-	          <P>Hit Ctrl-U to view the source code. </P>
-          <p>Create a Camera</p>
-          <pre>const camera = new THREE.PerspectiveCamera(70,
+	    Look at <a target="_blank" href="three/three_0.html">BasicsOfThreeJS/three/three_0.html</a>, <a target="_blank" href="http://threejs.org/examples/#webgl_geometry_cube">an example</a> that comes with three.js. I made some modification.
+	    <P>Hit Ctrl-U to view the source code. </P>
+            <p>Create a Camera</p>
+            <pre>const camera = new THREE.PerspectiveCamera(70,
                        window.innerWidth / window.innerHeight,
                        1, 1000 );
 camera.position.z = 400;</pre>
-          <p>Make a Scene</p>
-          <pre>const scene = new THREE.Scene();</pre>
-        </div>
+            <p>Make a Scene</p>
+            <pre>const scene = new THREE.Scene();</pre>
+          </div>
         </article>
         
         <article>
           <h3>More Codes</h3>
           <div>
-          <p>Create a Cube with a Texture</p>
-          <pre>
+            <p>Create a Cube with a Texture</p>
+            <pre>
 const texture = new THREE.TextureLoader().load('textures/crate.gif');
 const geometry = new THREE.BoxBufferGeometry(200, 200, 200);
 const material = new THREE.MeshBasicMaterial({ map: texture });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
-          </pre>
-          <p>and some window resize code:</p>
-          <pre>
+            </pre>
+            <p>and some window resize code:</p>
+            <pre>
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
-          </pre>
-        </div>
+            </pre>
+          </div>
         </article>
 
         <article>
@@ -158,11 +158,11 @@ function animate() {
           <p>It's like <code>setTimeout(callback, timeUntilNextFrame)</code></p>
           <p>Except that:</p>
           <ul class="build">
-          <li>The browser knows when the next frame is drawn</li>
-          <div> &rarr; calls callback at screen refresh rate or lower<br><br></div>
-          <li>The browser knows when an element is on the screen</li>
-          <div> &rarr; only calls callback when the element is visible</div>
-        </ul>
+            <li>The browser knows when the next frame is drawn</li>
+            <div> &rarr; calls callback at screen refresh rate or lower<br><br></div>
+            <li>The browser knows when an element is on the screen</li>
+            <div> &rarr; only calls callback when the element is visible</div>
+          </ul>
         </article>
 
         <article class="title">
@@ -276,14 +276,64 @@ scene.add( light2 );</pre>
         </article>
 
         <article>
+          <h3>GUI</h3>
+          <p>Code: <a target="_blank" href="three/three_6.html">BasicsOfThreeJS/three/three_6.html</a></p>
+          <p>Add the dat.gui library to the top:</p>
+          <pre class="prettyprint"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"three.js/build/three.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"js/controls/OrbitControls.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"js/libs/dat.gui.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln"></span></pre>
+        </article>
+
+        <article>
+          <h3>Add a gui</h3>
+          <pre>
+     // GUI parameters
+     const params = {
+       lightIntensity: 1
+     };
+     
+     const gui = new dat.GUI();
+     gui.add(params, 'lightIntensity', 0, 2);
+     gui.open();
+          </pre>
+          <p>This makes a slider that changes <code>params.lightIntensity</code></p>
+        </article>
+
+        <article>
+          <h3>GUI</h3>
+          <iframe src="three/three_6.html"></iframe>
+        </article>
+
+        <article>
+          <h3>GUI</h3>
+          <p>Code: <a target="_blank" href="three/three_7.html">BasicsOfThreeJS/three/three_7.html</a></p>
+          <p>Can make sub-folders for GUI</p>
+          <pre>
+const params = {
+  light: {intensity: 1}
+};
+
+const gui = new dat.GUI();
+gui.open();
+const folder1 = gui.addFolder('Directional Light');
+folder1.add(params, 'intensity', 0, 2);
+folder1.open();</pre>
+        </article>
+
+        <article>
+          <h3>GUI</h3>
+          <iframe src="three/three_7.html"></iframe>
+        </article>
+
+        <article>
           <h3>Learn more</h3>
           <p>Udacity: Interactive 3D Graphics</p>
           <p>By the co-author of the <a href="http://www.realtimerendering.com/">Real-Time Rendering</a></p>
           <a href="https://www.udacity.com/course/interactive-3d-graphics--cs291">
-          <img src="images/graphics_course.png" alt="Udacity graphics course" />
+            <img src="images/graphics_course.png" alt="Udacity graphics course" />
           </a>
           <p><a href="https://www.udacity.com/course/interactive-3d-graphics--cs291">
-          www.udacity.com/course/interactive-3d-graphics--cs291
+            www.udacity.com/course/interactive-3d-graphics--cs291
           </a></p>
         </article>
 
@@ -300,20 +350,20 @@ scene.add( light2 );</pre>
     </section>
 
     <script> 
-                    var _gaq = _gaq || [];
-                    _gaq.push(['_setAccount', 'UA-1485935-6']);
-                    _gaq.push(['_trackPageview']);
-                    
-                    (function() {
-                            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                    })();
-                </script> 
+     var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', 'UA-1485935-6']);
+     _gaq.push(['_trackPageview']);
+     
+     (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+    </script> 
     <!--[if IE]>
       <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
       <script>CFInstall.check({mode: 'overlay'});</script>
     <![endif]-->
 
-</body>
+  </body>
 </html>
