@@ -22,15 +22,9 @@
 
      // Create a scene 
      const scene = new THREE.Scene();
-     const light = new THREE.DirectionalLight(0xffffff);
-     light.position.set(100,200,400);
-     scene.add(light);
-     const light2 = new THREE.AmbientLight( 0x888888 );
-     scene.add( light2 );
-     
      const texture = new THREE.TextureLoader().load('textures/UV_Grid_Sm.jpg');
      const geometry = new THREE.BoxBufferGeometry(200, 200, 200);
-     const material = new THREE.MeshPhysicalMaterial({ map: texture });
+     const material = new THREE.MeshBasicMaterial({ map: texture });
      const mesh = new THREE.Mesh(geometry, material);
      scene.add(mesh);
 

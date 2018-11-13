@@ -1,78 +1,62 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <script src="three.js/build/Three.js"></script>
-    <style type="text/css">
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-
-      #container {
-        position:absolute;
-        left:0px;
-        top:0px;
-        width:100%;
-        height:100%;
-        margin: 0px;
-        padding: 0px;
-      }
+    <title>three.js webgl - geometry - cube</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+     body {
+       margin: 0px;
+       background-color: #000000;
+       overflow: hidden;
+     }
     </style>
-
-    <script src="raf.js"></script>
-
+    <script src="three.js/build/three.js"></script>
+    <script src="js/controls/OrbitControls.js"></script>
   </head>
-
   <body>
     <script>
-      var renderer = new THREE.WebGLRenderer({antialias: true});
-      renderer.setSize(document.body.clientWidth, document.body.clientHeight);
-      document.body.appendChild(renderer.domElement);
-      renderer.setClearColorHex(0xEEEEEE, 1.0);
-      renderer.clear();
-      var fov = 45; // camera field-of-view in degrees
-      var width = renderer.domElement.width;
-      var height = renderer.domElement.height;
-      var aspect = width / height; // view aspect ratio
-      var near = 1; // near clip plane
-      var far = 10000; // far clip plane
-      var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-      camera.position.z = 300;
-      var scene = new THREE.Scene();
-      var cube = new THREE.Mesh(
-        new THREE.CubeGeometry(50,50,50),
-        new THREE.MeshBasicMaterial({color: 0x000000, opacity: 1})
-      );
-      scene.add(cube);
+     // Creates camera
+     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000 );
+     camera.position.z = 400;
 
-      var light = new THREE.SpotLight();
-      light.position.set( 170, 330, -160 );
-      scene.add(light);
-      var litCube = new THREE.Mesh(
-        new THREE.CubeGeometry(50, 50, 50),
-        new THREE.MeshLambertMaterial({color: 0xffffff}));
-      litCube.position.y = 50;
-      scene.add(litCube);
+     // Create a scene 
+     const scene = new THREE.Scene();
+     const light = new THREE.DirectionalLight(0xffffff);
+     light.position.set(100,200,400);
+     scene.add(light);
+     
+     const texture = new THREE.TextureLoader().load('textures/UV_Grid_Sm.jpg');
+     const geometry = new THREE.BoxBufferGeometry(200, 200, 200);
+     const material = new THREE.MeshPhysicalMaterial({ map: texture });
+     const mesh = new THREE.Mesh(geometry, material);
+     scene.add(mesh);
 
+     const renderer = new THREE.WebGLRenderer();
+     renderer.clear();
+     renderer.setClearColor(0xa0a0a0);
+     renderer.setPixelRatio( window.devicePixelRatio );
+     renderer.setSize( window.innerWidth, window.innerHeight );
 
-      renderer.render(scene, camera);
-      var paused = false;
-      var last = new Date().getTime();
-      function animate(t) {
-        if (!paused) {
-          last = t;
-          camera.position.set(
-            Math.sin(t/1000)*300, 150, Math.cos(t/1000)*300);
-          renderer.clear();
-          camera.lookAt(scene.position);
-          renderer.render(scene, camera);
-        }
-        window.requestAnimationFrame(animate, renderer.domElement);
-      };
-      animate(new Date().getTime());
-      onmessage = function(ev) {
-        paused = (ev.data == 'pause');
-      };
+     const controls = new THREE.OrbitControls(camera, renderer.domElement);
+     
+     document.body.appendChild( renderer.domElement );
+     window.addEventListener( 'resize', onWindowResize, false );
+
+     animate();
+
+     function onWindowResize() {
+       camera.aspect = window.innerWidth / window.innerHeight;
+       camera.updateProjectionMatrix();
+       renderer.setSize( window.innerWidth, window.innerHeight );
+     }
+     function animate() {
+       requestAnimationFrame( animate );
+       // mesh.rotation.x += 0.005;
+       // mesh.rotation.y += 0.01;
+       renderer.render( scene, camera );
+     }
     </script>
-  </body>
 
+  </body>
 </html>
