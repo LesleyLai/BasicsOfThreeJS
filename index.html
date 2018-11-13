@@ -326,6 +326,48 @@ folder1.open();</pre>
         </article>
 
         <article>
+          <h3>I'm Sick of the Box</h3>
+          <p>Me too. Let's add a "sun" to our scene.</p>
+          <p>Code: <a target="_blank" href="three/three_8.html">BasicsOfThreeJS/three/three_8.html</a></p>
+          <pre>const sunGeometry = new THREE.SphereGeometry(50, 32, 16);
+const sunTexture = new THREE.TextureLoader().load('textures/2k_sun.jpg');
+const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
+const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+sunMesh.position.x = 250;
+sunMesh.position.y = 100;
+scene.add(sunMesh);</pre>
+        </article>
+
+        <article>
+          <h3>Sun</h3>
+          <p>And set a point light at Sun's center</p>
+          <pre>const sunLight = new THREE.PointLight(0xffffff);
+sunLight.parent = sunMesh;
+sunMesh.add(sunLight);</pre>
+          <p>Note that I don't add the light to <code>scene</code>, instead I add it to <code>sunMesh</code>. This adds <a href="https://en.wikipedia.org/wiki/Scene_graph">Scene Graph</a>.</p>
+        </article>
+
+        <article>
+          <h3>Sun</h3>
+          <iframe src="three/three_8.html"></iframe>
+        </article>
+
+        <article>
+          <h3>Make it move</h3>
+          <p>Add some code to the <code>animate</code> function.</p>
+          <pre>
+const time = Date.now() * 0.001;
+sunMesh.position.x = 200 * Math.cos(time);
+sunMesh.position.z = 200 * Math.sin(time);</pre>
+          <p>This will change the position of our sun each time before the browser repaint.</p>
+        </article>
+
+        <article>
+          <h3>Moving Sun</h3>
+          <iframe src="three/three_9.html"></iframe>
+        </article>
+
+        <article>
           <h3>Learn more</h3>
           <p>Udacity: Interactive 3D Graphics</p>
           <p>By the co-author of the <a href="http://www.realtimerendering.com/">Real-Time Rendering</a></p>
